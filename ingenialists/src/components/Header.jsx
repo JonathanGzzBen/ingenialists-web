@@ -1,65 +1,74 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from "./Home";
+import Articulos from "./Articulos";
+import Categorias from "./Categorias";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 const Header = () => (
-  <nav className="navbar navbar-light navbar-expand-md navigation-clean-button">
-    <div className="container">
-      <a className="navbar-brand" href="index.html">
-        Ingenialists
-      </a>
-      <button
-        data-bs-toggle="collapse"
-        className="navbar-toggler"
-        data-bs-target="#navcol-2"
-      >
-        <span className="visually-hidden">Toggle navigation</span>
-        <span className="navbar-toggler-icon" />
-      </button>
-      <div className="collapse navbar-collapse" id="navcol-2">
-        <ul className="navbar-nav me-auto">
-          <li className="nav-item" />
-          <li className="nav-item">
-            <a className="nav-link" href="articulos.html">
-              Artículos
-            </a>
-          </li>
-          <li className="nav-item dropdown">
-            <a
-              className="dropdown-toggle nav-link"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              href="#"
+  <Router>
+    <nav className="navbar navbar-light navbar-expand-md navigation-clean-button">
+      <div className="container">
+        <Link to="/" className="navbar-brand">
+          Ingenialists
+        </Link>
+        <button
+          data-bs-toggle="collapse"
+          className="navbar-toggler"
+          data-bs-target="#navcol-2"
+        >
+          <span className="visually-hidden">Toggle navigation</span>
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navcol-2">
+          <ul className="navbar-nav me-auto">
+            <li className="nav-item" />
+            <li className="nav-item">
+              <Link className="nav-link" to="/articulos">
+                Artículos
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/categorias">
+                Categorías
+              </Link>
+            </li>
+          </ul>
+          <span className="navbar-text actions">
+            {" "}
+            <Link className="login" to="/login">
+              Log In
+            </Link>
+            <Link
+              className="btn btn-light action-button"
+              role="button"
+              to="/signup"
             >
-              Categorías 
-            </a>
-            <div className="dropdown-menu">
-              <a className="dropdown-item" href="categoria.html">
-                First Item
-              </a>
-              <a className="dropdown-item" href="#">
-                Second Item
-              </a>
-              <a className="dropdown-item" href="#">
-                Third Item
-              </a>
-            </div>
-          </li>
-        </ul>
-        <span className="navbar-text actions">
-          {" "}
-          <a className="login" href="log-in.html">
-            Log In
-          </a>
-          <a
-            className="btn btn-light action-button"
-            role="button"
-            href="sign-up.html"
-          >
-            Sign Up
-          </a>
-        </span>
+              Sign Up
+            </Link>
+          </span>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/articulos">
+        <Articulos />
+      </Route>
+      <Route path="/categorias">
+        <Categorias />
+      </Route>
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/signup">
+        <SignUp />
+      </Route>
+    </Switch>
+  </Router>
 );
 
 export default Header;
